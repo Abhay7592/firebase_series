@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
             .then((value) => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => MyHomePage(title: "HomePage",))));
+                    builder: (context) => MyHomePage())));
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomeAlertBox(context, ex.code.toString());
       }

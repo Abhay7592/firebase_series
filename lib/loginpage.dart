@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
             .then((value) => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => MyHomePage(title: "Myhomepage"))));
+                    builder: (context) => MyHomePage())));
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomeAlertBox(context, ex.code.toString());
       }
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context,
+                    Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
                   child: Text(
