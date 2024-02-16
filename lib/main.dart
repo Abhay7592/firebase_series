@@ -4,6 +4,7 @@ import 'package:firebase_series/loginpage.dart';
 import 'package:firebase_series/showdata.dart';
 import 'package:flutter/material.dart';
 
+
 import 'checkuser.dart';
 
 Future<void> main() async {
@@ -15,7 +16,8 @@ Future<void> main() async {
       appId:
           "1:1012463725078:android:439729b29f5b6974d8e337", //paste your app id here
       messagingSenderId: "1012463725078", //paste your messagingSenderId here
-      projectId: "fir-series-60448", //paste your project id here
+      projectId: "fir-series-60448",
+      storageBucket:"fir-series-60448.appspot.com" //paste your project id here
     ),
   );
 
