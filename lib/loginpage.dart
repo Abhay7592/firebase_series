@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_series/forgotpassword.dart';
 import 'package:firebase_series/main.dart';
 import 'package:firebase_series/signuppage.dart';
 import 'package:firebase_series/uihelper.dart';
@@ -23,7 +24,11 @@ class _LoginPageState extends State<LoginPage> {
 
       try {
         usercredential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage(title: "Myhomepage"))));
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((value) => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MyHomePage(title: "Myhomepage"))));
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomeAlertBox(context, ex.code.toString());
       }
@@ -71,6 +76,16 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
                   ))
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ForgotPassword()));
+            },
+            child: Text("Forgot Password??", style: TextStyle(fontSize: 20)),
           )
         ],
       ),
