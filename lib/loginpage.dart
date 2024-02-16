@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_series/forgotpassword.dart';
 import 'package:firebase_series/main.dart';
+import 'package:firebase_series/phoneauth.dart';
 import 'package:firebase_series/signuppage.dart';
 import 'package:firebase_series/uihelper.dart';
 import 'package:flutter/material.dart';
@@ -56,9 +57,17 @@ class _LoginPageState extends State<LoginPage> {
             login(emailController.text.toString(),
                 passwordController.text.toString());
           }, "Login"),
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>PhoneAuth()));
+
+
+          }, child: Text("Login With PhoneNumber", style: TextStyle(fontSize: 15))),
           SizedBox(
             height: 20,
           ),
+          // SizedBox(
+          //   height: 20,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -80,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 20,
           ),
+
           TextButton(
             onPressed: () {
               Navigator.push(context,
