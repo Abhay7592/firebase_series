@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_series/loginpage.dart';
+import 'package:firebase_series/showdata.dart';
 import 'package:flutter/material.dart';
 
 import 'checkuser.dart';
@@ -76,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
+      body: ShowData(),
     );
   }
 }
