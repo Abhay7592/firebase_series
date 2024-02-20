@@ -16,7 +16,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Phone Auth"),
+        title: const Text("Phone Auth"),
         centerTitle: true,
       ),
       body: Column(
@@ -27,13 +27,13 @@ class _PhoneAuthState extends State<PhoneAuth> {
             child: TextField(
               controller: phoneController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Enter your phone number",
                   suffixIcon: Icon(Icons.phone),
                   border: OutlineInputBorder()),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
@@ -42,13 +42,17 @@ class _PhoneAuthState extends State<PhoneAuth> {
                     verificationCompleted: (PhoneAuthCredential credential) {},
                     verificationFailed: (FirebaseAuthException ex) {},
                     codeSent: (String verificationId, int? resendToken) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>OTPscreen(verificationid: verificationId,)));
-
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OTPscreen(
+                                    verificationid: verificationId,
+                                  )));
                     },
                     codeAutoRetrievalTimeout: (String verficationid) {},
                     phoneNumber: phoneController.text.toString());
               },
-              child: Text("verify Phone Number"))
+              child: const Text("verify Phone Number"))
         ],
       ),
     );

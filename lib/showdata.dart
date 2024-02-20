@@ -10,13 +10,12 @@ class ShowData extends StatefulWidget {
 }
 
 class _ShowDataState extends State<ShowData> {
-
-
   Future<void> _deleteDocument(String documentId) async {
-    await FirebaseFirestore.instance.collection("Users").doc(documentId).delete();
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(documentId)
+        .delete();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,8 @@ class _ShowDataState extends State<ShowData> {
                         trailing: IconButton(
                           onPressed: () async {
                             // Get the document ID
-                            String documentId = snapshot.data?.docs[index]["Title"];
+                            String documentId =
+                                snapshot.data?.docs[index]["Title"];
 
                             // Delete the document from Firestore
                             await _deleteDocument(documentId);
@@ -42,13 +42,12 @@ class _ShowDataState extends State<ShowData> {
                             // Refresh the screen by triggering a rebuild
                             setState(() {});
                           },
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                         ),
                         leading: CircleAvatar(
                           child: Text("${index + 1}"),
                         ),
                         title: Text("${snapshot.data?.docs[index]["Title"]}"),
-
                         subtitle: Text(
                             "${snapshot.data?.docs[index]["Description"]}"),
                       );
@@ -56,10 +55,10 @@ class _ShowDataState extends State<ShowData> {
               } else if (snapshot.hasError) {
                 return Text("${snapshot.hasError.toString()}");
               } else {
-                return Center(child: Text("no data found"));
+                return const Center(child: Text("no data found"));
               }
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           }),
     );

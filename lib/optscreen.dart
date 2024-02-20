@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_series/main.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _OTPscreenState extends State<OTPscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("OTP Screen"),
+        title: const Text("OTP Screen"),
         centerTitle: true,
       ),
       body: Column(
@@ -30,12 +29,12 @@ class _OTPscreenState extends State<OTPscreen> {
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                   hintText: "Enter the OTP",
-                  suffixIcon: Icon(Icons.phone),
+                  suffixIcon: const Icon(Icons.phone),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25))),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
@@ -50,12 +49,12 @@ class _OTPscreenState extends State<OTPscreen> {
                       (value) => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyHomePage())));
+                              builder: (context) => const MyHomePage())));
                 } catch (ex) {
                   print(ex.toString());
                 }
               },
-              child: Text("OTP"))
+              child: const Text("OTP"))
         ],
       ),
     );

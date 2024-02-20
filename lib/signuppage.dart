@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
         builder: (BuildContext context) {
           {
             return AlertDialog(
-              title: Text("Pick Image From"),
+              title: const Text("Pick Image From"),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -35,16 +35,16 @@ class _SignUpPageState extends State<SignUpPage> {
                       pickImage(ImageSource.camera);
                       Navigator.pop(context);
                     },
-                    leading: Icon(Icons.camera_alt),
-                    title: Text("Camera"),
+                    leading: const Icon(Icons.camera_alt),
+                    title: const Text("Camera"),
                   ),
                   ListTile(
                     onTap: () {
                       pickImage(ImageSource.gallery);
                       Navigator.pop(context);
                     },
-                    leading: Icon(Icons.image),
-                    title: Text("Gallery"),
+                    leading: const Icon(Icons.image),
+                    title: const Text("Gallery"),
                   ),
                 ],
               ),
@@ -53,15 +53,14 @@ class _SignUpPageState extends State<SignUpPage> {
         });
   }
 
-  SignUp(String email, String password) async {
+  signUp(String email, String password) async {
     if (email == "" && password == "" && pickedImage == null) {
       UiHelper.CustomeAlertBox(context, "Enter Require Field");
     } else {
       UserCredential? userCredential;
       try {
         FirebaseFirestore.instance.collection("Users").doc("Email").set({
-          "title":email,
-
+          "title": email,
         });
 
         userCredential = await FirebaseAuth.instance
@@ -69,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
             .then((value) {
           uploadData();
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyHomePage()));
+              context, MaterialPageRoute(builder: (context) => const MyHomePage()));
         });
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomeAlertBox(context, ex.code.toString());
@@ -97,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Sign Up page"),
+          title: const Text("Sign Up page"),
           centerTitle: true,
         ),
         body: Column(
@@ -112,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       radius: 80,
                       backgroundImage: FileImage(pickedImage!),
                     )
-                  : CircleAvatar(
+                  : const CircleAvatar(
                       radius: 80,
                       child: Icon(
                         Icons.person,
@@ -124,11 +123,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 emailController, "Email", Icons.mail, false),
             UiHelper.CustomTextField(
                 passwordController, "Password", Icons.password, true),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             UiHelper.CustomeButton(() {
-              SignUp(emailController.text.toString(),
+              signUp(emailController.text.toString(),
                   passwordController.text.toString());
             }, "Sign Up")
           ],

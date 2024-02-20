@@ -22,9 +22,8 @@ class _AddDataState extends State<AddData> {
         "Description": desc,
       }).then((value) {
         print("Data Inserted");
-        Navigator.pop(context,MaterialPageRoute(builder: (context)=>ShowData()));
-
-
+        Navigator.pop(
+            context, MaterialPageRoute(builder: (context) => ShowData()));
       });
     }
   }
@@ -33,7 +32,7 @@ class _AddDataState extends State<AddData> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Data"),
+        title: const Text("Add Data"),
         centerTitle: true,
       ),
       body: Column(
@@ -51,7 +50,7 @@ class _AddDataState extends State<AddData> {
                   )),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Padding(
@@ -74,7 +73,7 @@ class _AddDataState extends State<AddData> {
                 addData(titleController.text.toString(),
                     descController.text.toString());
               },
-              child: Text("Save Data"))
+              child: const Text("Save Data"))
         ],
       ),
     );
