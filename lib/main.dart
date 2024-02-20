@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_series/adddata.dart';
 import 'package:firebase_series/loginpage.dart';
 import 'package:firebase_series/showdata.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       home: const CheckUser(),
-      // home: PhoneAuth(),
+      // home: const AddData(),
+
     );
   }
 }
@@ -47,11 +49,13 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
+
 class _MyHomePageState extends State<MyHomePage> {
   logout() async {
     FirebaseAuth.instance.signOut().then((value) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
     });
   }
 
@@ -59,27 +63,76 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MyHomepage"),
+        title: const Text("MyHomepage"),
         centerTitle: true,
         backgroundColor: Colors.black38,
-        leading: Icon(Icons.supervised_user_circle),
-        elevation:1,
+        leading: const Icon(Icons.supervised_user_circle),
+        elevation: 1,
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () {
-                    logout();
-                  },
-                  icon: Icon(Icons.logout)),
-
+                onPressed: () {
+                  logout();
+                },
+                icon: const Icon(Icons.logout),
+              ),
             ],
-          )
+          ),
         ],
       ),
-      body: ShowData(),
+      body: const ShowData(),
+      floatingActionButton: FloatingActionButton(
+
+        onPressed: () {
+          // Add the action you want when the FAB is pressed
+          // For example, you can navigate to another page
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddData()));
+        },
+        tooltip: 'Add your tooltip here',
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Adjust the location as per your preference
     );
   }
 }
+
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   logout() async {
+//     FirebaseAuth.instance.signOut().then((value) {
+//       Navigator.pushReplacement(
+//           context, MaterialPageRoute(builder: (context) => const LoginPage()));
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("MyHomepage"),
+//         centerTitle: true,
+//         backgroundColor: Colors.black38,
+//         leading: const Icon(Icons.supervised_user_circle),
+//         elevation:1,
+//         actions: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               IconButton(
+//                   onPressed: () {
+//                     logout();
+//                   },
+//                   icon: const Icon(Icons.logout)),
+//
+//             ],
+//           )
+//         ],
+//       ),
+//       body: const ShowData(),
+//     );
+//   }
+// }

@@ -29,9 +29,9 @@ class _ShowDataState extends State<ShowData> {
                         leading: CircleAvatar(
                           child: Text("${index + 1}"),
                         ),
-                        title: Text("${snapshot.data?.docs[index]["Email"]}"),
+                        title: Text("${snapshot.data?.docs[index]["Title"]}"),
                         subtitle: Text(
-                            "${snapshot.data?.docs[index]["description"]}"),
+                            "${snapshot.data?.docs[index]["Description"]}"),
                       );
                     });
               } else if (snapshot.hasError) {
