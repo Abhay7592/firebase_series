@@ -83,12 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: const ShowData(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add the action you want when the FAB is pressed
-          // For example, you can navigate to another page
+
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => AddData()));
         },
-        tooltip: 'Add your tooltip here',
+        tooltip: 'Add',
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation

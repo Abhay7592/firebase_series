@@ -1,6 +1,5 @@
 import 'dart:io'; // Import the File class
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_series/main.dart';
 import 'package:firebase_series/uihelper.dart';
@@ -59,9 +58,9 @@ class _SignUpPageState extends State<SignUpPage> {
     } else {
       UserCredential? userCredential;
       try {
-        FirebaseFirestore.instance.collection("Users").doc("Email").set({
-          "title": email,
-        });
+        // FirebaseFirestore.instance.collection("Users").doc("Email").set({
+        //   "title": email,
+        // });
 
         userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password)
@@ -70,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const MyHomePage()));
         });
+
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomeAlertBox(context, ex.code.toString());
       }
@@ -84,12 +84,12 @@ class _SignUpPageState extends State<SignUpPage> {
         .child(emailController.text.toString())
         .putFile(pickedImage!);
     TaskSnapshot taskSnapshot = await uploadTask;
-    String url = await taskSnapshot.ref.getDownloadURL();
-    FirebaseFirestore.instance
-        .collection("Users")
-        .doc(emailController.text.toString())
-        .set({"Email": emailController.text.toString(), "Image": url}).then(
-            (value) => print("User Uploaded"));
+    // String url = await taskSnapshot.ref.getDownloadURL();
+    // FirebaseFirestore.instance
+    //     .collection("Users")
+    //     .doc(emailController.text.toString())
+    //     .set({"Email": emailController.text.toString(), "Image": url}).then(
+    //         (value) => print("User Uploaded"));
   }
 
   @override

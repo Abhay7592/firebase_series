@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_series/loginpage.dart';
 import 'package:firebase_series/uihelper.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           ),
           UiHelper.CustomeButton(() {
             forgotPassword(emailController.text.toString());
+            Navigator.pop(context,MaterialPageRoute(builder:(context)=>const LoginPage() ));
           }, "Reset Password")
         ],
       ),
