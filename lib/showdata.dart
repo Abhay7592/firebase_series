@@ -10,13 +10,17 @@ class ShowData extends StatefulWidget {
 }
 
 class _ShowDataState extends State<ShowData> {
+
+
+  Future<void> _deleteDocument(String documentId) async {
+    await FirebaseFirestore.instance.collection("Users").doc(documentId).delete();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Show Data"),
-      //   centerTitle: true,
-      // ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Users").snapshots(),
           builder: (context, snapshot) {
@@ -26,10 +30,25 @@ class _ShowDataState extends State<ShowData> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       return ListTile(
+                        trailing: IconButton(
+                          onPressed: () async {
+                            // Get the document ID
+                            String documentId = snapshot.data?.docs[index]["Title"];
+
+                            // Delete the document from Firestore
+                            await _deleteDocument(documentId);
+                            print("Data Deleted");
+
+                            // Refresh the screen by triggering a rebuild
+                            setState(() {});
+                          },
+                          icon: Icon(Icons.delete),
+                        ),
                         leading: CircleAvatar(
                           child: Text("${index + 1}"),
                         ),
                         title: Text("${snapshot.data?.docs[index]["Title"]}"),
+
                         subtitle: Text(
                             "${snapshot.data?.docs[index]["Description"]}"),
                       );
