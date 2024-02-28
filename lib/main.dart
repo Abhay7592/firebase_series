@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_series/adddata.dart';
 import 'package:firebase_series/loginpage.dart';
 import 'package:firebase_series/showdata.dart';
+import 'package:firebase_series/splashscreen.dart';
 import 'package:flutter/material.dart';
 
-import 'checkuser.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: const CheckUser(),
+      home:SplashScreen(),
+      // home: const CheckUser(),
       // home: const AddData(),
     );
   }
